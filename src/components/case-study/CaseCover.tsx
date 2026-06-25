@@ -54,7 +54,7 @@ export default function CaseCover({ study }: { study: CaseStudy }) {
 
         <Reveal delay={0.4}>
           <div
-            className="grid grid-cols-2 md:grid-cols-4 gap-y-6 pt-8 mt-10"
+            className="grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-6 pt-8 mt-10"
             style={{ borderTop: "1px solid var(--line)" }}
           >
             {study.meta.map((m) => (

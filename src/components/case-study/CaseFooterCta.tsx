@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Reveal from "@/components/ui/Reveal";
 import Magnetic from "@/components/ui/Magnetic";
+import ArrowIcon from "@/components/ui/ArrowIcon";
 import { caseStudies } from "@/lib/case-studies";
 
 export default function CaseFooterCta({ currentSlug }: { currentSlug: string }) {
@@ -24,14 +25,15 @@ export default function CaseFooterCta({ currentSlug }: { currentSlug: string }) 
         <Reveal delay={0.1}>
           <Link
             href={`/work/${next.slug}`}
-            className="font-extrabold mt-5 block transition-opacity hover:opacity-70"
+            className="font-extrabold mt-5 flex items-center justify-center gap-4 transition-opacity hover:opacity-70"
             style={{
               fontSize: "var(--fs-display)",
               fontFamily: "var(--font-display)",
               lineHeight: 1.04,
             }}
           >
-            {next.name} →
+            {next.name}
+            <ArrowIcon direction="e" size={40} />
           </Link>
         </Reveal>
 

@@ -70,7 +70,7 @@ export default function Services() {
                 className="flex items-center justify-between gap-6 py-7"
                 style={{ borderTop: "1px solid var(--line)" }}
               >
-                <div className="flex-1 flex flex-col gap-2.5">
+                <div className="flex-1 min-w-0 flex flex-col gap-2.5">
                   <h3
                     className="font-bold"
                     style={{ fontSize: "var(--fs-card-title)", fontFamily: "var(--font-display)" }}

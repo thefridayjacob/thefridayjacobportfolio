@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Reveal from "@/components/ui/Reveal";
 import RevealText from "@/components/ui/RevealText";
+import ArrowIcon from "@/components/ui/ArrowIcon";
 import { galleryProjects } from "@/lib/case-studies";
 
 const accentColor: Record<string, string> = {
@@ -68,12 +69,12 @@ export default function WorkGallery() {
                       {p.name}
                     </h3>
                     {p.liveUrl && (
-                      <span
-                        className="text-xl transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+                      <ArrowIcon
+                        direction="ne"
+                        size={16}
+                        className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
                         style={{ color: accentColor[p.accent] }}
-                      >
-                        ↗
-                      </span>
+                      />
                     )}
                   </div>
                   <p style={{ fontSize: "var(--fs-caption)", color: "var(--text-mid)" }}>
@@ -84,10 +85,11 @@ export default function WorkGallery() {
                   </p>
                   {p.liveUrl && (
                     <span
-                      className="inline-block mt-3"
+                      className="inline-flex items-center gap-1 mt-3"
                       style={{ fontSize: "var(--fs-caption)", color: accentColor[p.accent] }}
                     >
-                      {p.liveUrl} ↗
+                      {p.liveUrl}
+                      <ArrowIcon direction="ne" size={12} />
                     </span>
                   )}
                 </div>

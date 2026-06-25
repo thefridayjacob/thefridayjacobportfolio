@@ -72,8 +72,8 @@ export default function Contact() {
                       aria-label={social.label}
                       className="flex items-center justify-center rounded-full transition-colors"
                       style={{
-                        width: 40,
-                        height: 40,
+                        width: 44,
+                        height: 44,
                         border: "1px solid var(--line-strong)",
                         color: "var(--text-mid)",
                       }}

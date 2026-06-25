@@ -97,7 +97,7 @@ export default function Nav() {
         <button
           aria-label="Toggle menu"
           onClick={() => setMenuOpen((v) => !v)}
-          className="md:hidden flex flex-col items-center justify-center gap-1.5 w-9 h-9 rounded-full"
+          className="md:hidden flex flex-col items-center justify-center gap-1.5 w-11 h-11 rounded-full"
           style={{ border: "1px solid var(--line-strong)" }}
         >
           <span

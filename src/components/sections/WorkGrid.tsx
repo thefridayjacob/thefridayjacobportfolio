@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/ui/Reveal";
 import RevealText from "@/components/ui/RevealText";
+import ArrowIcon from "@/components/ui/ArrowIcon";
 import { caseStudies } from "@/lib/case-studies";
 
 const accentColor: Record<string, string> = {
@@ -80,12 +81,12 @@ export default function WorkGrid() {
                       {cs.category}
                     </p>
                   </div>
-                  <span
-                    className="text-2xl transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
+                  <ArrowIcon
+                    direction="ne"
+                    size={18}
+                    className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
                     style={{ color: accentColor[cs.accent] }}
-                  >
-                    ↗
-                  </span>
+                  />
                 </div>
               </Link>
             </Reveal>
