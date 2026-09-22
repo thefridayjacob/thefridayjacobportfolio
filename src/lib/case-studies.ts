@@ -11,7 +11,7 @@ export type CaseStudy = {
   lede: string;
   accent: "pink" | "teal" | "amber";
   meta: CaseStudyMeta[];
-  /** Path under /public/work/<slug>/... — drop real screenshots here later */
+  /** Path under /public/work/<slug>/..., drop real screenshots here later */
   heroImage: string;
   problem: {
     title: string;
@@ -30,7 +30,7 @@ export type CaseStudy = {
 };
 
 /**
- * Lighter-weight entry for projects shown as a gallery card only — no
+ * Lighter-weight entry for projects shown as a gallery card only, no
  * dedicated case study page. Per the original portfolio plan: these are
  * real, shipped projects that don't need the full problem/decisions/
  * reflection breakdown to earn their place in the work section.
@@ -42,7 +42,7 @@ export type GalleryProject = {
   blurb: string;
   liveUrl?: string;
   accent: "pink" | "teal" | "amber";
-  /** Path under /public/work/<slug>/... — drop a real screenshot here later */
+  /** Path under /public/work/<slug>/..., drop a real screenshot here later */
   image: string;
 };
 
@@ -52,7 +52,7 @@ export const caseStudies: CaseStudy[] = [
     name: "MyPHI",
     category: "Healthcare",
     eyebrow: "Case study",
-    lede: "An AI medical visit transcriptor and documentation platform — recording, transcription, and understanding for patients, privately and on their own terms.",
+    lede: "An AI medical visit transcriptor and documentation platform, recording, transcription, and understanding for patients, privately and on their own terms.",
     accent: "teal",
     meta: [
       { label: "Role", value: "UI/UX Designer (Solo)" },
@@ -63,16 +63,16 @@ export const caseStudies: CaseStudy[] = [
     heroImage: "/work/myphi/hero.jpg",
     problem: {
       title: "Patients forget what their doctor said within minutes.",
-      body: "Medical visits move fast, and the information that matters most — dosages, follow-ups, warning signs — gets lost the moment a patient walks out the door. MyPHI needed to capture, transcribe, and explain a visit back to the patient in plain language, without ever feeling like surveillance.",
+      body: "Medical visits move fast, and the information that matters most, dosages, follow-ups, warning signs, gets lost the moment a patient walks out the door. MyPHI needed to capture, transcribe, and explain a visit back to the patient in plain language, without ever feeling like surveillance.",
     },
     decisions: [
       {
         title: "Consent before capture, every time",
-        body: "Recording starts only after an explicit, visible consent step — never silently in the background. Trust had to be designed first, function second.",
+        body: "Recording starts only after an explicit, visible consent step, never silently in the background. Trust had to be designed first, function second.",
       },
       {
         title: "Six surfaces, one mental model",
-        body: "Mobile, desktop, watch, WhatsApp, admin and the marketing site all needed to feel like the same product, scaled differently — not six different apps.",
+        body: "Mobile, desktop, watch, WhatsApp, admin and the marketing site all needed to feel like the same product, scaled differently, not six different apps.",
       },
     ],
     gallery: [
@@ -85,14 +85,14 @@ export const caseStudies: CaseStudy[] = [
       "Cross-surface system thinking (6 distinct platforms)",
       "Translating clinical language into plain patient language",
     ],
-    reflection: "The hardest part wasn't the interface — it was earning the right to record someone's most vulnerable conversations and proving, visually, that the product respected that.",
+    reflection: "The hardest part wasn't the interface, it was earning the right to record someone's most vulnerable conversations and proving, visually, that the product respected that.",
   },
   {
     slug: "bitwayne",
     name: "Bitwayne",
     category: "Fintech super-app",
     eyebrow: "Case study",
-    lede: "A fintech super-app that collapses payments, crypto, procurement, bills, gift cards and betting into one wallet — one balance, one PIN, one receipt format.",
+    lede: "A fintech super-app that collapses payments, crypto, procurement, bills, gift cards and betting into one wallet, one balance, one PIN, one receipt format.",
     accent: "amber",
     meta: [
       { label: "Role", value: "UI/UX Designer (Solo)" },
@@ -108,7 +108,7 @@ export const caseStudies: CaseStudy[] = [
     decisions: [
       {
         title: "One receipt format, everywhere",
-        body: "Every transaction — crypto swap, bill payment, bet settlement — resolves to the exact same receipt layout. Users learn the pattern once.",
+        body: "Every transaction, crypto swap, bill payment, bet settlement, resolves to the exact same receipt layout. Users learn the pattern once.",
       },
       {
         title: "Progressive disclosure for power users",
@@ -134,7 +134,7 @@ export const caseStudies: CaseStudy[] = [
     name: "CivicX Ecosystem",
     category: "Civic tech",
     eyebrow: "Case study",
-    lede: "A three-app civic ecosystem — Citizen, Officer and Vendor — plus a landing page. See something, report it, get it resolved, and get rewarded for being the kind of citizen who speaks up.",
+    lede: "A three-app civic ecosystem, Citizen, Officer and Vendor, plus a landing page. See something, report it, get it resolved, and get rewarded for being the kind of citizen who speaks up.",
     accent: "pink",
     meta: [
       { label: "Role", value: "UI/UX Designer (Solo)" },
@@ -154,7 +154,7 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         title: "Three apps, one shared incident model",
-        body: "Citizen, Officer and Vendor all read and write to the same incident object — just through radically different UI suited to each role's urgency and context.",
+        body: "Citizen, Officer and Vendor all read and write to the same incident object, just through radically different UI suited to each role's urgency and context.",
       },
     ],
     gallery: [
@@ -169,14 +169,14 @@ export const caseStudies: CaseStudy[] = [
       "Designing for trust and follow-through in civic systems",
       "Large-scale IA across 4 connected products",
     ],
-    reflection: "The breakthrough was realizing the citizen app wasn't the product — the resolution loop across all three roles was the product.",
+    reflection: "The breakthrough was realizing the citizen app wasn't the product, the resolution loop across all three roles was the product.",
   },
   {
     slug: "precious-house",
     name: "The Precious House",
     category: "AI-native build",
-    eyebrow: "Case study — AI-native build",
-    lede: "A complete church membership and attendance management system — deployed, live, real members. Seven Supabase tables. Seven pages. Fifteen modals. Two hundred and nineteen functions. One HTML file.",
+    eyebrow: "Case study, AI-native build",
+    lede: "A complete church membership and attendance management system, deployed, live, real members. Seven Supabase tables. Seven pages. Fifteen modals. Two hundred and nineteen functions. One HTML file.",
     accent: "amber",
     meta: [
       { label: "Role", value: "Designer · Architect · Builder" },
@@ -196,7 +196,7 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         title: "Single-file architecture for zero-friction deployment",
-        body: "Built as one self-contained HTML file connected to Supabase — meaning updates ship instantly with no build pipeline, hosting complexity, or app store review.",
+        body: "Built as one self-contained HTML file connected to Supabase, meaning updates ship instantly with no build pipeline, hosting complexity, or app store review.",
       },
     ],
     gallery: [
@@ -209,14 +209,14 @@ export const caseStudies: CaseStudy[] = [
       "AI-native development at production quality",
       "Designing for real-world, low-tech-literacy users",
     ],
-    reflection: "This is the project that proved AI-assisted building isn't a shortcut — it's a multiplier, if the design thinking underneath is solid.",
+    reflection: "This is the project that proved AI-assisted building isn't a shortcut, it's a multiplier, if the design thinking underneath is solid.",
   },
   {
     slug: "zylogics",
     name: "Zylogics",
     category: "Brand → build",
     eyebrow: "Case study",
-    lede: "Brand identity rebuilt from scratch, seven-page website designed in Figma, and live WordPress site — by one person. Logo to live, no handoff gap.",
+    lede: "Brand identity rebuilt from scratch, seven-page website designed in Figma, and live WordPress site, by one person. Logo to live, no handoff gap.",
     accent: "teal",
     meta: [
       { label: "Role", value: "Brand · UI/UX · WordPress Dev" },
@@ -227,7 +227,7 @@ export const caseStudies: CaseStudy[] = [
     heroImage: "/work/zylogics/hero.jpg",
     problem: {
       title: "A new identity, with no one to hand it off to.",
-      body: "Zylogics needed a brand that signaled technical credibility from day one — and there was no separate development team waiting to receive a handoff file. The designer had to also be the builder.",
+      body: "Zylogics needed a brand that signaled technical credibility from day one, and there was no separate development team waiting to receive a handoff file. The designer had to also be the builder.",
     },
     decisions: [
       {
@@ -236,12 +236,12 @@ export const caseStudies: CaseStudy[] = [
       },
       {
         title: "Logo-to-live in one continuous process",
-        body: "No separate brand phase and web phase — typography, color, and layout decisions were tested directly in the live site as they were made.",
+        body: "No separate brand phase and web phase, typography, color, and layout decisions were tested directly in the live site as they were made.",
       },
     ],
     gallery: [
       { src: "/work/zylogics/brand-01.jpg", caption: "Logo construction" },
-      { src: "/work/zylogics/brand-02.jpg", caption: "Brand collateral — tie & apparel" },
+      { src: "/work/zylogics/brand-02.jpg", caption: "Brand collateral, tie & apparel" },
       { src: "/work/zylogics/brand-03.jpg", caption: "Stationery system" },
       { src: "/work/zylogics/brand-04.jpg", caption: "Business cards & logo variants" },
       { src: "/work/zylogics/brand-05.jpg", caption: "Brand colors & typography" },
@@ -255,14 +255,14 @@ export const caseStudies: CaseStudy[] = [
       "Designing systems that translate cleanly into a CMS",
       "Solo execution at agency-level scope",
     ],
-    reflection: "Doing the brand and the build myself meant no decision ever got lost in translation — what I designed is exactly what shipped.",
+    reflection: "Doing the brand and the build myself meant no decision ever got lost in translation, what I designed is exactly what shipped.",
   },
   {
     slug: "durian",
     name: "Durian Foundation",
     category: "Repositioning",
     eyebrow: "Case study",
-    lede: "Repositioning a rural development organisation from charity to systems architect — brand direction, 15+ page templates, custom 3D icon system, and a live WordPress build at durian.org.ng.",
+    lede: "Repositioning a rural development organisation from charity to systems architect, brand direction, 15+ page templates, custom 3D icon system, and a live WordPress build at durian.org.ng.",
     accent: "pink",
     meta: [
       { label: "Role", value: "UX Strategist · UI Designer · Dev" },
@@ -273,7 +273,7 @@ export const caseStudies: CaseStudy[] = [
     heroImage: "/work/durian/hero.jpg",
     problem: {
       title: "Durian looked like a charity asking for help, not an organisation building systems.",
-      body: "The existing brand and site read as a fundraising appeal — but the organisation's actual work was systemic rural development. The visual language needed to reposition them as architects, not askers.",
+      body: "The existing brand and site read as a fundraising appeal, but the organisation's actual work was systemic rural development. The visual language needed to reposition them as architects, not askers.",
     },
     decisions: [
       {
@@ -294,12 +294,12 @@ export const caseStudies: CaseStudy[] = [
       "Building scalable template systems for non-technical teams",
       "Custom illustration/icon systems as brand differentiation",
     ],
-    reflection: "The real deliverable wasn't a website — it was a new way for Durian to be taken seriously by funders and partners.",
+    reflection: "The real deliverable wasn't a website, it was a new way for Durian to be taken seriously by funders and partners.",
   },
 ];
 
 /**
- * Projects shown as gallery cards only — real, shipped work that rounds
+ * Projects shown as gallery cards only, real, shipped work that rounds
  * out the portfolio without needing a dedicated case study page.
  */
 export const galleryProjects: GalleryProject[] = [
@@ -307,7 +307,7 @@ export const galleryProjects: GalleryProject[] = [
     slug: "civicx-website",
     name: "CivicX Technologies",
     category: "Corporate website",
-    blurb: "A government-facing civic tech company's website, redesigned to carry the weight of work I'd already designed for their products — real screenshots, real capability claims, built for institutional buyers.",
+    blurb: "A government-facing civic tech company's website, redesigned to carry the weight of work I'd already designed for their products, real screenshots, real capability claims, built for institutional buyers.",
     liveUrl: "civicxtech.com",
     accent: "teal",
     image: "/work/civicx-website/cover.jpg",
@@ -316,7 +316,7 @@ export const galleryProjects: GalleryProject[] = [
     slug: "applied-wisdom",
     name: "Applied Wisdom Solutions",
     category: "Wix build · assessment tool",
-    blurb: "A faith-led consulting firm's website, plus a 12-question scored organizational assessment with conditional logic and automated email classification — a full lead-qualification funnel built into a form.",
+    blurb: "A faith-led consulting firm's website, plus a 12-question scored organizational assessment with conditional logic and automated email classification, a full lead-qualification funnel built into a form.",
     liveUrl: "appliedwisdomsolutions.com",
     accent: "amber",
     image: "/work/applied-wisdom/cover.jpg",
@@ -325,7 +325,7 @@ export const galleryProjects: GalleryProject[] = [
     slug: "wgh-nigeria",
     name: "Women in Global Health Nigeria",
     category: "WordPress · infrastructure",
-    blurb: "Full site design and WordPress build for a national health-equity advocacy movement — plus the unglamorous parts: DNS configuration, custom team email, and a complete SEO indexing pipeline.",
+    blurb: "Full site design and WordPress build for a national health-equity advocacy movement, plus the unglamorous parts: DNS configuration, custom team email, and a complete SEO indexing pipeline.",
     liveUrl: "wghnigeria.ng",
     accent: "pink",
     image: "/work/wgh-nigeria/cover.jpg",
@@ -334,7 +334,7 @@ export const galleryProjects: GalleryProject[] = [
     slug: "graceland-healthcare",
     name: "Graceland Healthcare Services",
     category: "Brand · WordPress · SEO",
-    blurb: "A UK home healthcare provider's brand and website, written and designed for a reader who's scared and trying to make a decision they can live with — plus full regulated-market SEO.",
+    blurb: "A UK home healthcare provider's brand and website, written and designed for a reader who's scared and trying to make a decision they can live with, plus full regulated-market SEO.",
     liveUrl: "gracelandhealthcareservices.co.uk",
     accent: "teal",
     image: "/work/graceland-healthcare/cover.jpg",
@@ -343,7 +343,7 @@ export const galleryProjects: GalleryProject[] = [
     slug: "solformis",
     name: "Solformis",
     category: "Brand · pre-launch SaaS",
-    blurb: "Logo reconstruction and a three-breakpoint landing page for a pre-launch compliance-automation startup in life sciences — built to earn trust before there were any case studies to point to.",
+    blurb: "Logo reconstruction and a three-breakpoint landing page for a pre-launch compliance-automation startup in life sciences, built to earn trust before there were any case studies to point to.",
     liveUrl: "solformis.com",
     accent: "pink",
     image: "/work/solformis/cover.jpg",
@@ -352,7 +352,7 @@ export const galleryProjects: GalleryProject[] = [
     slug: "agility-autos",
     name: "Agility Autos",
     category: "Brand · WooCommerce",
-    blurb: "A dealer-only vehicle wholesaler in New Zealand — WooCommerce stripped of every checkout and payment feature, rebuilt as a private catalog and quote-request engine for verified dealers only.",
+    blurb: "A dealer-only vehicle wholesaler in New Zealand, WooCommerce stripped of every checkout and payment feature, rebuilt as a private catalog and quote-request engine for verified dealers only.",
     liveUrl: "agilityautos.co.nz",
     accent: "amber",
     image: "/work/agility-autos/cover.jpg",
@@ -361,7 +361,7 @@ export const galleryProjects: GalleryProject[] = [
     slug: "weekr",
     name: "Weekr",
     category: "AI-native build",
-    blurb: "A working weekly expense tracker built end-to-end in Figma Make — including a full design-token migration across 15 files and a debugged onboarding flow. Live, not a concept.",
+    blurb: "A working weekly expense tracker built end-to-end in Figma Make, including a full design-token migration across 15 files and a debugged onboarding flow. Live, not a concept.",
     liveUrl: "verse-number-01691725.figma.site",
     accent: "teal",
     image: "/work/weekr/cover.jpg",

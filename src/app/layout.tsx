@@ -1,43 +1,39 @@
 import type { Metadata } from "next";
-import { Syne, DM_Sans } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
 import "./globals.css";
+import ThemeProvider from "@/components/shell/ThemeProvider";
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
-import CustomCursor from "@/components/ui/CustomCursor";
-import GrainOverlay from "@/components/ui/GrainOverlay";
-import PageTransition from "@/components/ui/PageTransition";
-
-const syne = Syne({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["600", "700", "800"],
-});
-
-const dmSans = DM_Sans({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-});
+import Shell from "@/components/shell/Shell";
 
 export const metadata: Metadata = {
-  title: "Friday Jacob — Designer & Builder",
+  title: "Friday Jacob — AI Design Engineer",
   description:
-    "I learned to design because someone needed help and I didn't know how. Eight years later I'm still solving that same problem — now with AI-powered systems and live users.",
+    "Friday Jacob designs and ships product experiences — from healthcare and fintech apps to AI-native builds with live users.",
 };
+
+// Set the theme before first paint so there is no flash. Default is light.
+const themeInit = `(function(){try{var t=localStorage.getItem('theme');if(t!=='dark'&&t!=='light'){t='light';}document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();`;
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${syne.variable} ${dmSans.variable}`}>
-      <body className="antialiased">
-        <SmoothScrollProvider>
-          <GrainOverlay />
-          <CustomCursor />
-          <PageTransition />
-          {children}
-        </SmoothScrollProvider>
+    <html
+      lang="en"
+      data-theme="light"
+      suppressHydrationWarning
+      className={`${GeistSans.variable} ${GeistMono.variable}`}
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
+      </head>
+      <body>
+        <ThemeProvider>
+          <SmoothScrollProvider>
+            <Shell>{children}</Shell>
+          </SmoothScrollProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -1,7 +1,6 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { caseStudies, getCaseStudy } from "@/lib/case-studies";
-import CaseNav from "@/components/case-study/CaseNav";
 import CaseCover from "@/components/case-study/CaseCover";
 import CaseProblem from "@/components/case-study/CaseProblem";
 import CaseDecisions from "@/components/case-study/CaseDecisions";
@@ -38,15 +37,12 @@ export default async function CaseStudyPage({
 
   return (
     <>
-      <CaseNav label={`${study.name} — Case study`} />
-      <main>
-        <CaseCover study={study} />
-        <CaseProblem study={study} />
-        <CaseDecisions study={study} />
-        <CaseGallery study={study} />
-        <CaseReflection study={study} />
-        <CaseFooterCta currentSlug={study.slug} />
-      </main>
+      <CaseCover study={study} />
+      <CaseProblem study={study} />
+      <CaseDecisions study={study} />
+      <CaseGallery study={study} />
+      <CaseReflection study={study} />
+      <CaseFooterCta currentSlug={study.slug} />
     </>
   );
 }

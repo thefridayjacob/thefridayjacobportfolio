@@ -36,6 +36,12 @@ export default function Reveal({
 
     const targets = staggerChildren ? gsap.utils.toArray(el.children) : el;
 
+    // Reduced motion: show content immediately, skip the reveal animation.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      gsap.set(targets, { y: 0, opacity: 1, ...(scale ? { scale: 1 } : {}) });
+      return;
+    }
+
     gsap.set(targets, {
       y,
       opacity: 0,

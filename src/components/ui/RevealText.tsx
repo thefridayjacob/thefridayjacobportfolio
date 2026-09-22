@@ -32,6 +32,12 @@ export default function RevealText({
     const el = ref.current;
     if (!el) return;
 
+    // Reduced motion: render the text as-is, no split, no reveal.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      gsap.set(el, { opacity: 1 });
+      return;
+    }
+
     let split: SplitText | undefined;
     let st: ReturnType<typeof ScrollTrigger.create> | undefined;
 
