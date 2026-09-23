@@ -30,11 +30,7 @@ export default function TopBar() {
   return (
     <header
       className="topbar sticky top-0 z-40 flex items-center justify-between gap-4 px-[var(--pad)]"
-      style={{
-        height: "var(--topbar-h)",
-        borderTopLeftRadius: "calc(var(--radius-frame) - 1px)",
-        borderTopRightRadius: "calc(var(--radius-frame) - 1px)",
-      }}
+      style={{ height: "var(--topbar-h)" }}
     >
       {/* Left: identity or back */}
       <div className="flex min-w-0 items-center">

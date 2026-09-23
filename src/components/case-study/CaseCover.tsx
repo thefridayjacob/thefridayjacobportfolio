@@ -81,7 +81,7 @@ export default function CaseCover({ study }: { study: CaseStudy }) {
           >
             <Image
               src={study.heroImage}
-              alt={`${study.name} — hero shot`}
+              alt={`${study.name}, hero shot`}
               fill
               sizes="100vw"
               priority

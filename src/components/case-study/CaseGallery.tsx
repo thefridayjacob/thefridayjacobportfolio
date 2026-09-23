@@ -31,7 +31,7 @@ export default function CaseGallery({ study }: { study: CaseStudy }) {
                 >
                   <Image
                     src={g.src}
-                    alt={`${study.name} — ${g.caption}`}
+                    alt={`${study.name}, ${g.caption}`}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
                     className="object-cover"

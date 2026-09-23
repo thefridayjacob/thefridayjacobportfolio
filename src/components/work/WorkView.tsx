@@ -13,116 +13,106 @@ const accent: Record<string, string> = {
   amber: "var(--amber)",
 };
 
+const arrowChip =
+  "grid h-11 w-11 shrink-0 place-items-center rounded-full transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:rotate-45";
+
 export default function WorkView() {
   const reduce = useReducedMotion();
   const rise = (i: number) => ({
-    initial: reduce ? false : { opacity: 0, y: 28 },
+    initial: reduce ? false : { opacity: 0, y: 26 },
     whileInView: { opacity: 1, y: 0 },
-    viewport: { once: true, amount: 0.2 },
-    transition: { duration: 0.6, delay: (i % 2) * 0.06, ease: EASE },
+    viewport: { once: true, amount: 0.15 },
+    transition: { type: "spring" as const, bounce: 0.24, duration: 0.7, delay: (i % 2) * 0.05 },
   });
 
   return (
-    <div className="flex flex-1 flex-col px-[var(--pad)] pb-[var(--pad)] pt-[clamp(1.5rem,4vw,3.5rem)]">
+    <div className="edge flex flex-1 flex-col pb-[var(--section)] pt-[clamp(2rem,6vw,4.5rem)]">
       <div className="wrap w-full">
         <motion.header
           initial={reduce ? false : { opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: EASE }}
+          transition={{ duration: 0.7, ease: EASE }}
         >
           <h1 className="font-semibold" style={{ fontSize: "var(--fs-mega)", letterSpacing: "-0.04em", lineHeight: 0.9 }}>
             Work
           </h1>
-          <p className="mt-4 max-w-[48ch]" style={{ fontSize: "var(--fs-lede)", color: "var(--text-mid)", lineHeight: 1.3 }}>
+          <p className="mt-6 max-w-[46ch]" style={{ fontSize: "var(--fs-lede)", color: "var(--text-mid)", lineHeight: 1.3 }}>
             Healthcare, fintech, civic tech, and AI-native builds. Six shipped,
             in the world today.
           </p>
         </motion.header>
 
-        {/* Case studies — big image cards */}
-        <div className="mt-[clamp(2.5rem,6vh,4.5rem)] grid gap-5 md:grid-cols-2">
+        {/* Case studies — large clean images, captions below */}
+        <div className="mt-[var(--section)] grid gap-x-8 gap-y-[clamp(3rem,6vw,5rem)] md:grid-cols-2">
           {caseStudies.map((cs, i) => (
             <motion.div key={cs.slug} {...rise(i)}>
-              <Link href={`/work/${cs.slug}`} className="tile group block" aria-label={`${cs.name}, ${cs.category}`}>
-                <div className="relative" style={{ aspectRatio: "16 / 11" }}>
+              <Link href={`/work/${cs.slug}`} className="group block" aria-label={`${cs.name}, ${cs.category}`}>
+                <div className="media" style={{ aspectRatio: "16 / 11" }}>
                   <Image
                     src={cs.heroImage}
-                    alt=""
+                    alt={`${cs.name}, ${cs.category}`}
                     fill
-                    sizes="(max-width: 860px) 100vw, 44vw"
+                    sizes="(max-width: 768px) 100vw, 46vw"
                     className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.04]"
                   />
-                  <span
-                    className="absolute inset-0"
-                    aria-hidden="true"
-                    style={{ background: "linear-gradient(to top, rgba(8,8,10,0.82) 0%, rgba(8,8,10,0.15) 42%, transparent 70%)" }}
-                  />
-                  <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 md:p-6" style={{ color: "#fff" }}>
-                    <div>
-                      <span
-                        className="mono uppercase tracking-[0.14em]"
-                        style={{ fontSize: "var(--fs-mono)", color: accent[cs.accent] }}
-                      >
-                        {cs.category}
-                      </span>
-                      <h2 className="mt-1 font-semibold" style={{ fontSize: "clamp(1.5rem,2.4vw,2.1rem)", letterSpacing: "-0.03em", color: "#fff" }}>
-                        {cs.name}
-                      </h2>
-                    </div>
-                    <span
-                      className="grid h-11 w-11 shrink-0 place-items-center rounded-full transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                      style={{ background: "rgba(10,10,12,0.4)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.25)", color: "#fff" }}
-                    >
-                      <ArrowIcon direction="ne" size={18} />
+                </div>
+                <div className="mt-5 flex items-start justify-between gap-4">
+                  <div>
+                    <span className="mono uppercase tracking-[0.16em]" style={{ fontSize: "var(--fs-mono)", color: accent[cs.accent] }}>
+                      {cs.category}
                     </span>
+                    <h2 className="mt-1.5 font-semibold" style={{ fontSize: "clamp(1.6rem,2.4vw,2.2rem)", letterSpacing: "-0.03em" }}>
+                      {cs.name}
+                    </h2>
                   </div>
+                  <span className={arrowChip} style={{ border: "1px solid var(--line-strong)", color: accent[cs.accent] }}>
+                    <ArrowIcon direction="ne" size={18} />
+                  </span>
                 </div>
               </Link>
             </motion.div>
           ))}
         </div>
 
-        {/* More builds — compact live-site grid */}
-        <div className="mt-[clamp(3rem,8vh,6rem)]">
+        {/* More builds */}
+        <div className="mt-[var(--section)]">
           <h2 className="font-semibold" style={{ fontSize: "var(--fs-h2)", letterSpacing: "-0.03em" }}>
             More builds
           </h2>
-          <p className="mt-2" style={{ color: "var(--text-mid)" }}>
+          <p className="mt-3" style={{ color: "var(--text-mid)" }}>
             Live sites and shipped products. Each one is online.
           </p>
 
-          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-x-8 gap-y-[clamp(2.5rem,5vw,4rem)] sm:grid-cols-2 lg:grid-cols-3">
             {galleryProjects.map((p, i) => (
-              <motion.a
-                key={p.slug}
-                href={p.liveUrl ? `https://${p.liveUrl}` : undefined}
-                target={p.liveUrl ? "_blank" : undefined}
-                rel={p.liveUrl ? "noopener noreferrer" : undefined}
-                className="tile group block"
-                aria-label={`${p.name}, opens ${p.liveUrl} in a new tab`}
-                {...rise(i)}
-              >
-                <div className="relative" style={{ aspectRatio: "16 / 10" }}>
-                  <Image
-                    src={p.image}
-                    alt=""
-                    fill
-                    sizes="(max-width: 640px) 100vw, 30vw"
-                    className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
-                  />
-                </div>
-                <div className="flex items-start justify-between gap-3 p-4">
-                  <div className="min-w-0">
-                    <h3 className="truncate font-semibold" style={{ fontSize: "1.05rem" }}>
-                      {p.name}
-                    </h3>
-                    <span style={{ fontSize: "var(--fs-label)", color: "var(--text-mid)" }}>{p.category}</span>
+              <motion.div key={p.slug} {...rise(i)}>
+                <a
+                  href={p.liveUrl ? `https://${p.liveUrl}` : undefined}
+                  target={p.liveUrl ? "_blank" : undefined}
+                  rel={p.liveUrl ? "noopener noreferrer" : undefined}
+                  className="group block"
+                  aria-label={`${p.name}, opens ${p.liveUrl} in a new tab`}
+                >
+                  <div className="media" style={{ aspectRatio: "16 / 10" }}>
+                    <Image
+                      src={p.image}
+                      alt={`${p.name}, ${p.category}`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, 30vw"
+                      className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    />
                   </div>
-                  <span style={{ color: accent[p.accent] }} className="mt-0.5 shrink-0">
-                    <ArrowIcon direction="ne" size={15} />
-                  </span>
-                </div>
-              </motion.a>
+                  <div className="mt-4 flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <h3 className="font-semibold" style={{ fontSize: "1.1rem" }}>{p.name}</h3>
+                      <span style={{ fontSize: "var(--fs-label)", color: "var(--text-mid)" }}>{p.category}</span>
+                    </div>
+                    <span className="mt-0.5 shrink-0 transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5" style={{ color: accent[p.accent] }}>
+                      <ArrowIcon direction="ne" size={16} />
+                    </span>
+                  </div>
+                </a>
+              </motion.div>
             ))}
           </div>
         </div>

@@ -8,99 +8,90 @@ import ToolIcon from "@/components/ui/ToolIcon";
 import ArrowIcon from "@/components/ui/ArrowIcon";
 import WorkTileMedia from "./WorkTileMedia";
 
-const STACK = ["claude", "figma", "framer", "supabase", "wordpress"];
+const STACK = ["claude", "figma", "framer", "supabase", "wordpress", "vercel"];
 
 export default function BentoHub() {
   const reduce = useReducedMotion();
 
   const rise = (i: number) => ({
-    initial: reduce ? false : { opacity: 0, y: 16 },
-    animate: { opacity: 1, y: 0 },
-    transition: {
-      type: "spring" as const,
-      stiffness: 260,
-      damping: 26,
-      delay: 0.12 + i * 0.06,
-    },
+    initial: reduce ? false : { opacity: 0, y: 22 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: 0.2 },
+    transition: { type: "spring" as const, bounce: 0.28, duration: 0.7, delay: i * 0.05 },
   });
 
-  const tileInner = "relative z-10 flex h-full flex-col justify-between p-6 md:p-7";
-  const arrow =
-    "grid h-9 w-9 place-items-center rounded-full transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5";
-  const arrowStyle: React.CSSProperties = {
-    background: "var(--accent-tint)",
-    border: "1px solid color-mix(in srgb, var(--accent) 40%, var(--line-strong))",
-    color: "var(--accent)",
-  };
+  const arrowChip =
+    "grid h-11 w-11 shrink-0 place-items-center rounded-full transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:rotate-45";
 
   return (
-    <div
-      className="flex flex-1 flex-col gap-[clamp(1rem,2vw,1.75rem)] px-[var(--pad)] pb-[var(--pad)] pt-[clamp(1.25rem,3vw,2.5rem)]"
-      style={{ minHeight: 0 }}
-    >
-      {/* Wordmark */}
-      <motion.div
-        initial={reduce ? false : { opacity: 0, y: 16, filter: "blur(10px)" }}
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        transition={{ duration: 0.7, ease: EASE }}
-        className="shrink-0"
-      >
-        <h1 className="font-semibold leading-[0.92]" style={{ fontSize: "var(--fs-mega)", letterSpacing: "-0.04em" }}>
-          Friday Jacob
-        </h1>
-        <p
-          className="mt-3 max-w-[46ch]"
-          style={{ fontSize: "var(--fs-lede)", color: "var(--text-mid)", lineHeight: 1.25 }}
+    <div className="edge flex flex-1 flex-col pb-[var(--section)] pt-[clamp(2rem,6vw,4.5rem)]">
+      <div className="wrap w-full">
+        {/* Hero */}
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 18, filter: "blur(10px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.8, ease: EASE }}
+          className="pb-[clamp(3rem,9vw,7rem)]"
         >
-          I design and build products that work.
-        </p>
-      </motion.div>
+          <h1 className="font-semibold leading-[0.92]" style={{ fontSize: "var(--fs-mega)", letterSpacing: "-0.04em" }}>
+            Friday Jacob
+          </h1>
+          <p className="mt-5 max-w-[42ch]" style={{ fontSize: "var(--fs-lede)", color: "var(--text-mid)", lineHeight: 1.3 }}>
+            I design and build products that work.
+          </p>
+        </motion.div>
 
-      {/* Bento */}
-      <section className="bento" aria-label="Explore">
-        {/* WORK — sliding media hero */}
-        <motion.div {...rise(0)} className="area-work">
-          <Link href="/work" className="tile accent-pink group block h-full" aria-label="Work, six shipped products">
-            <WorkTileMedia />
-            <span
-              className="absolute inset-0 z-[1]"
-              aria-hidden="true"
-              style={{
-                background:
-                  "linear-gradient(112deg, rgba(8,8,10,0.74) 0%, rgba(8,8,10,0.36) 38%, rgba(8,8,10,0.06) 68%, transparent 100%), linear-gradient(to top, rgba(8,8,10,0.5) 0%, transparent 30%)",
-              }}
-            />
-            <div className={tileInner} style={{ color: "#fff" }}>
-              <div className="flex items-start justify-between">
+        {/* Bento */}
+        <div className="bento items-start">
+          {/* WORK — big clean image, text below on solid space */}
+          <motion.div {...rise(0)} className="area-work">
+            <Link href="/work" className="group block" aria-label="Work, six shipped products">
+              <div className="media" style={{ aspectRatio: "16 / 10" }}>
+                <WorkTileMedia />
+              </div>
+              <div className="mt-5 flex items-end justify-between gap-6">
                 <div>
-                  <span className="font-medium uppercase tracking-[0.14em]" style={{ fontSize: "var(--fs-mono)", color: "var(--pink)" }}>
+                  <span className="mono uppercase tracking-[0.16em]" style={{ fontSize: "var(--fs-mono)", color: "var(--pink)" }}>
                     Portfolio
                   </span>
-                  <h2 className="mt-1 font-semibold" style={{ fontSize: "clamp(1.75rem,3.2vw,2.75rem)", letterSpacing: "-0.03em", color: "#fff" }}>
+                  <h2 className="mt-1 font-semibold" style={{ fontSize: "clamp(1.9rem,3.4vw,2.9rem)", letterSpacing: "-0.03em" }}>
                     Work
                   </h2>
                 </div>
-                <span
-                  className={arrow}
-                  style={{ background: "rgba(10,10,12,0.4)", backdropFilter: "blur(8px)", border: "1px solid rgba(255,255,255,0.24)", color: "#fff" }}
-                >
-                  <ArrowIcon direction="ne" size={18} />
-                </span>
+                <div className="flex items-center gap-4">
+                  <p className="hidden text-right sm:block" style={{ fontSize: "var(--fs-label)", color: "var(--text-mid)", maxWidth: "18ch" }}>
+                    Six shipped products, five countries.
+                  </p>
+                  <span
+                    className="grid h-12 w-12 shrink-0 place-items-center rounded-full transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:rotate-45"
+                    style={{ border: "1px solid var(--line-strong)", color: "var(--pink)" }}
+                  >
+                    <ArrowIcon direction="ne" size={20} />
+                  </span>
+                </div>
               </div>
-              <p className="self-end text-right" style={{ fontSize: "var(--fs-label)", color: "rgba(255,255,255,0.9)" }}>
-                Six shipped products, five countries.
-              </p>
-            </div>
-          </Link>
-        </motion.div>
+            </Link>
+          </motion.div>
 
-        {/* ABOUT */}
-        <motion.div {...rise(1)} className="area-about">
-          <Link href="/about" className="tile accent-teal group block h-full" aria-label="About">
-            <span className="tile-accent-glow" aria-hidden="true" />
-            <div className={tileInner}>
+          {/* PHOTO — clean portrait, no text */}
+          <motion.div {...rise(1)} className="area-photo">
+            <div className="media" style={{ aspectRatio: "4 / 5" }}>
+              <Image
+                src="/work/about/portrait.jpg"
+                alt="Friday Jacob"
+                fill
+                sizes="(max-width: 720px) 100vw, 30vw"
+                className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                style={{ filter: "grayscale(1) contrast(1.03)" }}
+              />
+            </div>
+          </motion.div>
+
+          {/* ABOUT */}
+          <motion.div {...rise(2)} className="area-about">
+            <Link href="/about" className="tile accent-teal group flex h-full min-h-[220px] flex-col justify-between p-7 md:p-8" aria-label="About">
               <div className="flex justify-end">
-                <span className={arrow} style={arrowStyle}>
+                <span className={arrowChip} style={{ background: "var(--tint-teal)", color: "var(--teal)" }}>
                   <ArrowIcon direction="ne" size={16} />
                 </span>
               </div>
@@ -110,34 +101,14 @@ export default function BentoHub() {
                   Eight years, roadside posters to AI-native products.
                 </p>
               </div>
-            </div>
-          </Link>
-        </motion.div>
+            </Link>
+          </motion.div>
 
-        {/* PHOTO */}
-        <motion.div {...rise(2)} className="tile area-photo">
-          <Image
-            src="/work/about/portrait.jpg"
-            alt="Friday Jacob"
-            fill
-            sizes="(max-width: 860px) 100vw, 22vw"
-            className="object-cover object-top"
-            style={{ filter: "grayscale(1) contrast(1.03)" }}
-          />
-          <span
-            className="absolute inset-0"
-            aria-hidden="true"
-            style={{ background: "linear-gradient(to top, rgba(0,0,0,0.35), transparent 45%)" }}
-          />
-        </motion.div>
-
-        {/* CONTACT */}
-        <motion.div {...rise(3)} className="area-contact">
-          <Link href="/contact" className="tile accent-amber group block h-full" aria-label="Contact">
-            <span className="tile-accent-glow" aria-hidden="true" />
-            <div className={tileInner}>
+          {/* CONTACT */}
+          <motion.div {...rise(3)} className="area-contact">
+            <Link href="/contact" className="tile accent-amber group flex h-full min-h-[220px] flex-col justify-between p-7 md:p-8" aria-label="Contact">
               <div className="flex justify-end">
-                <span className={arrow} style={arrowStyle}>
+                <span className={arrowChip} style={{ background: "var(--tint-amber)", color: "var(--amber)" }}>
                   <ArrowIcon direction="ne" size={16} />
                 </span>
               </div>
@@ -147,24 +118,35 @@ export default function BentoHub() {
                   Have a project in mind? Start here.
                 </p>
               </div>
-            </div>
-          </Link>
-        </motion.div>
+            </Link>
+          </motion.div>
 
-        {/* TOOLS */}
-        <motion.div {...rise(4)} className="tile area-tools">
-          <div className="relative z-10 flex h-full flex-col justify-end p-6 md:p-7">
-            <span className="mb-4" style={{ fontSize: "var(--fs-label)", color: "var(--text-mid)" }}>
-              Stack
-            </span>
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-4" style={{ color: "var(--text-high)" }}>
-              {STACK.map((k) => (
-                <ToolIcon key={k} name={k} size={24} />
-              ))}
+          {/* STACK — playful icons */}
+          <motion.div {...rise(4)} className="area-tools">
+            <div className="tile flex h-full min-h-[220px] flex-col justify-between p-7 md:p-8">
+              <span style={{ fontSize: "var(--fs-label)", color: "var(--text-mid)" }}>Stack</span>
+              <div className="flex flex-wrap items-center gap-x-5 gap-y-4" style={{ color: "var(--text-high)" }}>
+                {STACK.map((k, i) => (
+                  <span
+                    key={k}
+                    className={reduce ? "" : "fj-float"}
+                    style={{ animationDelay: `${i * 0.22}s`, display: "inline-flex" }}
+                  >
+                    <motion.span
+                      whileHover={reduce ? { scale: 1.08 } : { scale: 1.28, rotate: 12, y: -3 }}
+                      whileTap={{ scale: 0.9 }}
+                      transition={{ type: "spring", bounce: 0.55, duration: 0.45 }}
+                      style={{ display: "inline-flex", cursor: "default" }}
+                    >
+                      <ToolIcon name={k} size={26} />
+                    </motion.span>
+                  </span>
+                ))}
+              </div>
             </div>
-          </div>
-        </motion.div>
-      </section>
+          </motion.div>
+        </div>
+      </div>
     </div>
   );
 }
