@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Reveal from "@/components/ui/Reveal";
-import RevealText from "@/components/ui/RevealText";
+import { motion, useReducedMotion } from "motion/react";
+import { EASE } from "@/lib/motion";
+import Rise from "@/components/motion/Rise";
 import type { CaseStudy } from "@/lib/case-studies";
 
 const accentColor: Record<string, string> = {
@@ -12,83 +13,62 @@ const accentColor: Record<string, string> = {
 };
 
 export default function CaseCover({ study }: { study: CaseStudy }) {
+  const reduce = useReducedMotion();
   return (
-    <section
-      className="px-6 md:px-12 pb-20 flex flex-col justify-center"
-      style={{ minHeight: "100vh", paddingTop: "var(--space-nav)" }}
-    >
-      <div className="max-w-[1200px] mx-auto w-full">
-        <Reveal>
-          <span
-            className="uppercase tracking-[0.16em]"
-            style={{ fontSize: "var(--fs-eyebrow)", color: accentColor[study.accent] }}
-          >
-            {study.eyebrow}
-          </span>
-        </Reveal>
-
-        <RevealText
-          as="h1"
-          trigger="mount"
-          className="font-extrabold mt-5"
-          style={
-            {
-              fontSize: "var(--fs-display)",
-              fontFamily: "var(--font-display)",
-              lineHeight: 1.04,
-              letterSpacing: "-0.02em",
-            } as React.CSSProperties
-          }
+    <section className="edge pt-[clamp(2rem,6vw,4.5rem)]">
+      <div className="wrap w-full">
+        <motion.div
+          initial={reduce ? false : { opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: EASE }}
+          className="max-w-[900px]"
         >
-          {study.name}
-        </RevealText>
-
-        <Reveal delay={0.3}>
+          <span
+            className="mono uppercase tracking-[0.16em]"
+            style={{ fontSize: "var(--fs-mono)", color: accentColor[study.accent] }}
+          >
+            {study.category}
+          </span>
+          <h1
+            className="mt-4 font-semibold text-balance"
+            style={{ fontSize: "var(--fs-h1)", letterSpacing: "-0.04em", lineHeight: 0.98 }}
+          >
+            {study.name}
+          </h1>
           <p
-            className="max-w-[680px] mt-7"
-            style={{ fontSize: "var(--fs-lede)", color: "var(--text-high)" }}
+            className="mt-7 max-w-[62ch]"
+            style={{ fontSize: "var(--fs-lede)", color: "var(--text-mid)", lineHeight: 1.35 }}
           >
             {study.lede}
           </p>
-        </Reveal>
+        </motion.div>
 
-        <Reveal delay={0.4}>
+        <Rise delay={0.15}>
           <div
-            className="grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-6 pt-8 mt-10"
-            style={{ borderTop: "1px solid var(--line)" }}
+            className="mt-12 grid grid-cols-2 gap-y-8 gap-x-6 border-t pt-8 md:grid-cols-4"
+            style={{ borderColor: "var(--line)" }}
           >
             {study.meta.map((m) => (
               <div key={m.label} className="flex flex-col gap-2">
-                <span style={{ fontSize: "var(--fs-caption)", color: "var(--text-mid)" }}>
-                  {m.label}
-                </span>
-                <span style={{ color: "var(--text-high)", fontWeight: 500 }}>
-                  {m.value}
-                </span>
+                <span style={{ fontSize: "var(--fs-label)", color: "var(--text-mid)" }}>{m.label}</span>
+                <span style={{ color: "var(--text-high)", fontWeight: 500 }}>{m.value}</span>
               </div>
             ))}
           </div>
-        </Reveal>
+        </Rise>
 
-        <Reveal delay={0.5} scale={0.97}>
-          <div
-            className="relative rounded-2xl overflow-hidden mt-10"
-            style={{
-              height: 560,
-              background: "var(--surface)",
-              border: "1px solid var(--line)",
-            }}
-          >
+        <Rise delay={0.2} y={32}>
+          <div className="media mt-[clamp(2.5rem,5vw,4rem)]" style={{ aspectRatio: "16 / 9" }}>
             <Image
               src={study.heroImage}
               alt={`${study.name}, hero shot`}
               fill
-              sizes="100vw"
+              sizes="(max-width: 1360px) 100vw, 1320px"
               priority
               className="object-cover"
             />
           </div>
-        </Reveal>
+        </Rise>
       </div>
     </section>
   );

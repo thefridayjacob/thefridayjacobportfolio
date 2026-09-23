@@ -1,67 +1,43 @@
 "use client";
 
-import Reveal from "@/components/ui/Reveal";
-import RevealText from "@/components/ui/RevealText";
+import Rise from "@/components/motion/Rise";
 import type { CaseStudy } from "@/lib/case-studies";
+
+const accentColor: Record<string, string> = {
+  pink: "var(--pink)",
+  teal: "var(--teal)",
+  amber: "var(--amber)",
+};
 
 export default function CaseDecisions({ study }: { study: CaseStudy }) {
   return (
-    <section
-      className="px-6 md:px-12 py-[var(--space-section)]"
-      style={{ background: "var(--surface)", borderTop: "1px solid var(--line)" }}
-    >
-      <div className="max-w-[1200px] mx-auto">
-        <div className="grid md:grid-cols-[180px_1fr] gap-y-7 gap-x-6 md:gap-x-16 md:gap-y-0">
-          <Reveal className="md:pt-3">
-            <span
-              className="uppercase tracking-[0.16em]"
-              style={{ fontSize: "var(--fs-eyebrow)", color: "var(--teal)" }}
-            >
-              Key decisions
-            </span>
-          </Reveal>
-          <RevealText
-            as="h2"
-            className="font-bold max-w-[680px]"
-            style={
-              {
-                fontSize: "var(--fs-section)",
-                fontFamily: "var(--font-display)",
-                lineHeight: 1.08,
-              } as React.CSSProperties
-            }
-          >
+    <section className="edge pb-[var(--section)]">
+      <div className="wrap w-full border-t pt-[var(--section)]" style={{ borderColor: "var(--line)" }}>
+        <Rise>
+          <span className="mono uppercase tracking-[0.16em]" style={{ fontSize: "var(--fs-mono)", color: "var(--text-low)" }}>
+            Key decisions
+          </span>
+          <h2 className="mt-5 font-semibold" style={{ fontSize: "var(--fs-h2)", letterSpacing: "-0.03em", lineHeight: 1.06 }}>
             What mattered, and why.
-          </RevealText>
-        </div>
+          </h2>
+        </Rise>
 
-        <div className="grid md:grid-cols-2 gap-6 mt-16 md:pl-[calc(180px+4rem)]">
+        <div className="mt-[clamp(3rem,6vw,5rem)] grid gap-x-12 gap-y-[clamp(2.5rem,5vw,4rem)] md:grid-cols-2">
           {study.decisions.map((d, i) => (
-            <Reveal key={d.title} delay={i * 0.1} y={32}>
-              <div
-                className="rounded-xl p-7 h-full"
-                style={{ background: "var(--surface-2)", border: "1px solid var(--line)" }}
+            <Rise key={d.title} delay={i * 0.08} y={28}>
+              <span
+                className="font-semibold tabular-nums"
+                style={{ fontSize: "clamp(2rem,3vw,2.75rem)", color: accentColor[study.accent], letterSpacing: "-0.03em" }}
               >
-                <span
-                  className="font-bold inline-block"
-                  style={{
-                    fontSize: "var(--fs-caption)",
-                    color: "var(--text-low)",
-                  }}
-                >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h3
-                  className="font-bold mt-3"
-                  style={{ fontSize: "var(--fs-card-title)", fontFamily: "var(--font-display)" }}
-                >
-                  {d.title}
-                </h3>
-                <p className="mt-4" style={{ color: "var(--text-mid)" }}>
-                  {d.body}
-                </p>
-              </div>
-            </Reveal>
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 className="mt-4 font-semibold" style={{ fontSize: "var(--fs-h3)" }}>
+                {d.title}
+              </h3>
+              <p className="mt-3 max-w-[46ch]" style={{ color: "var(--text-mid)", lineHeight: 1.6 }}>
+                {d.body}
+              </p>
+            </Rise>
           ))}
         </div>
       </div>

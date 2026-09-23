@@ -1,7 +1,6 @@
 "use client";
 
-import Reveal from "@/components/ui/Reveal";
-import RevealText from "@/components/ui/RevealText";
+import Rise from "@/components/motion/Rise";
 import type { CaseStudy } from "@/lib/case-studies";
 
 const accentColor: Record<string, string> = {
@@ -12,58 +11,44 @@ const accentColor: Record<string, string> = {
 
 export default function CaseReflection({ study }: { study: CaseStudy }) {
   return (
-    <section
-      className="px-6 md:px-12 py-[var(--space-section)]"
-      style={{ background: "var(--surface)", borderTop: "1px solid var(--line)", borderBottom: "1px solid var(--line)" }}
-    >
-      <div className="max-w-[1200px] mx-auto">
-        <div className="grid md:grid-cols-2 gap-16">
-          <div>
-            <Reveal>
-              <span
-                className="uppercase tracking-[0.16em]"
-                style={{ fontSize: "var(--fs-eyebrow)", color: accentColor[study.accent] }}
-              >
-                What this demonstrates
-              </span>
-            </Reveal>
-            <Reveal staggerChildren staggerAmount={0.08} className="flex flex-col gap-4 mt-7">
-              {study.demonstrates.map((item) => (
-                <div key={item} className="flex items-start gap-3">
-                  <span
-                    className="mt-2 w-1.5 h-1.5 rounded-full flex-shrink-0"
-                    style={{ background: accentColor[study.accent] }}
-                  />
-                  <p style={{ color: "var(--text-high)" }}>{item}</p>
-                </div>
-              ))}
-            </Reveal>
+    <section className="edge pb-[var(--section)]">
+      <div
+        className="wrap grid w-full gap-x-16 gap-y-14 border-t pt-[var(--section)] md:grid-cols-2"
+        style={{ borderColor: "var(--line)" }}
+      >
+        <div>
+          <Rise>
+            <span className="mono uppercase tracking-[0.16em]" style={{ fontSize: "var(--fs-mono)", color: "var(--text-low)" }}>
+              What this demonstrates
+            </span>
+          </Rise>
+          <div className="mt-8 flex flex-col gap-7">
+            {study.demonstrates.map((item, i) => (
+              <Rise key={item} delay={i * 0.07} y={16}>
+                <span
+                  className="mb-3 block h-[3px] w-8 rounded-full"
+                  style={{ background: accentColor[study.accent] }}
+                />
+                <p style={{ color: "var(--text-high)", lineHeight: 1.5 }}>{item}</p>
+              </Rise>
+            ))}
           </div>
+        </div>
 
-          <div>
-            <Reveal>
-              <span
-                className="uppercase tracking-[0.16em]"
-                style={{ fontSize: "var(--fs-eyebrow)", color: "var(--text-mid)" }}
-              >
-                Reflection
-              </span>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <RevealText
-                as="blockquote"
-                className="font-bold mt-7 block"
-                style={
-                  {
-                    fontSize: "var(--fs-quote)",
-                    fontFamily: "var(--font-display)",
-                  } as React.CSSProperties
-                }
-              >
-                {study.reflection}
-              </RevealText>
-            </Reveal>
-          </div>
+        <div>
+          <Rise>
+            <span className="mono uppercase tracking-[0.16em]" style={{ fontSize: "var(--fs-mono)", color: "var(--text-low)" }}>
+              Reflection
+            </span>
+          </Rise>
+          <Rise delay={0.1}>
+            <blockquote
+              className="mt-8 font-semibold"
+              style={{ fontSize: "var(--fs-quote)", letterSpacing: "-0.02em", lineHeight: 1.25 }}
+            >
+              {study.reflection}
+            </blockquote>
+          </Rise>
         </div>
       </div>
     </section>
