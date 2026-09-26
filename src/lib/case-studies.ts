@@ -103,7 +103,10 @@ export const caseStudies: CaseStudy[] = [
       { label: "Platform", value: "iOS · Android" },
       { label: "Status", value: "Live" },
     ],
-    live: [{ label: "Get it on the App Store", href: "https://apps.apple.com/ng/app/bitwayne/id6801814012" }],
+    live: [
+      { label: "App Store", href: "https://apps.apple.com/ng/app/bitwayne/id6801814012" },
+      { label: "Google Play", href: "https://play.google.com/store/apps/details?id=com.kelvic.bitwayne" },
+    ],
     heroImage: "/work/bitwayne/hero.jpg",
     problem: {
       title: "Eleven financial verticals, eleven different mental models.",
