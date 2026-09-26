@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "motion/react";
 import { EASE } from "@/lib/motion";
 import Rise from "@/components/motion/Rise";
+import ArrowIcon from "@/components/ui/ArrowIcon";
 import type { CaseStudy } from "@/lib/case-studies";
 
 const accentColor: Record<string, string> = {
@@ -41,6 +42,41 @@ export default function CaseCover({ study }: { study: CaseStudy }) {
           >
             {study.lede}
           </p>
+
+          {study.live && (
+            <div className="mt-9 flex flex-wrap items-center gap-x-5 gap-y-3">
+              <span
+                className="inline-flex items-center gap-2"
+                style={{ fontSize: "var(--fs-label)", color: accentColor[study.accent] }}
+              >
+                <span className="relative flex h-2 w-2" aria-hidden="true">
+                  <span
+                    className="absolute inline-flex h-full w-full rounded-full opacity-60"
+                    style={{ background: accentColor[study.accent], animation: "fj-ping 2.4s var(--ease-out) infinite" }}
+                  />
+                  <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: accentColor[study.accent] }} />
+                </span>
+                Live now
+              </span>
+              {study.live.map((l, i) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="press inline-flex items-center gap-2 rounded-full px-6 py-3 font-medium"
+                  style={
+                    i === 0
+                      ? { background: "var(--text-high)", color: "var(--page)" }
+                      : { border: "1px solid var(--line-strong)", color: "var(--text-high)" }
+                  }
+                >
+                  {l.label}
+                  <ArrowIcon direction="ne" size={15} />
+                </a>
+              ))}
+            </div>
+          )}
         </motion.div>
 
         <Rise delay={0.15}>

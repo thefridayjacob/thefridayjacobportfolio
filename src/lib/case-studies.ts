@@ -11,6 +11,8 @@ export type CaseStudy = {
   lede: string;
   accent: "pink" | "teal" | "amber";
   meta: CaseStudyMeta[];
+  /** Live download / site links, shown as buttons when the product is shipped */
+  live?: { label: string; href: string }[];
   /** Path under /public/work/<slug>/..., drop real screenshots here later */
   heroImage: string;
   problem: {
@@ -58,8 +60,9 @@ export const caseStudies: CaseStudy[] = [
       { label: "Role", value: "UI/UX Designer (Solo)" },
       { label: "Surfaces", value: "Mobile · Desktop · Watch · WhatsApp · Admin · Site" },
       { label: "Timeline", value: "January 2026" },
-      { label: "Status", value: "Production-ready" },
+      { label: "Status", value: "Live" },
     ],
+    live: [{ label: "Visit myphi.app", href: "https://myphi.app" }],
     heroImage: "/work/myphi/hero.jpg",
     problem: {
       title: "Patients forget what their doctor said within minutes.",
@@ -97,9 +100,10 @@ export const caseStudies: CaseStudy[] = [
     meta: [
       { label: "Role", value: "UI/UX Designer (Solo)" },
       { label: "Scope", value: "200+ screens · 11 verticals" },
-      { label: "Platform", value: "Mobile (iOS / Android)" },
-      { label: "Status", value: "Production-ready" },
+      { label: "Platform", value: "iOS · Android" },
+      { label: "Status", value: "Live" },
     ],
+    live: [{ label: "Get it on the App Store", href: "https://apps.apple.com/ng/app/bitwayne/id6801814012" }],
     heroImage: "/work/bitwayne/hero.jpg",
     problem: {
       title: "Eleven financial verticals, eleven different mental models.",
